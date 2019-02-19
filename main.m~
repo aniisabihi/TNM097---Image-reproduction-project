@@ -8,14 +8,12 @@ end
 save ImageData h
 
 %% Databas alternativ 2 
-dataBase = cell(250,1);
+dataBase=cell(250,1);
 
 for i=1:250
-  dataBase{i}=imread(['ImageDatabase/' int2str(i) '.jpg']);
-  k{i} = imresize(dataBase{i}, [25 25], 'bicubic'); 
+  dataBase{i}=imread(['ImageDatabase/' int2str(i) '.jpg ']);
 end
-
-save dataBase k
+save dataBase dataBase
 
 %%
 load ImageData.mat
