@@ -1,0 +1,9 @@
+for k=1:250
+   image = imread(sprintf('%d.jpg',k));
+   h{k} = imresize(image, [25 25]);
+end
+save ImageData h
+
+%%
+im = im2double(h{1});
+imshow(im)
