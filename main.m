@@ -19,7 +19,7 @@ save dataBase k
 
 %%
 load ImageData.mat
-
+load dataBase.mat
 
 %%
 RepImage = imread('ImageDatabase/1.jpg');
@@ -41,7 +41,7 @@ indexOfmin = zeros(100,100);
 
 
 %% Skickar in en pixel tilsammans med hela datasettet
-% Tar också tid, hur gör man utan loopar?
+% Tar ocksï¿½ tid, hur gï¿½r man utan loopar?
 
 for m = 1:100
     for n = 1:100
@@ -49,7 +49,7 @@ for m = 1:100
     end
 end
 
- %% Ta reda på hur man gör utan loopar!!
+ %% Ta reda pï¿½ hur man gï¿½r utan loopar!!
 
 for j = 1:25:3750
      for k = 1:25:3750
@@ -61,7 +61,27 @@ for j = 1:25:3750
      end
 end
 
+%% Kommentarer och idÃ©er 
+
+% https://se.mathworks.com/matlabcentral/fileexchange/30039-mosaic-generator
+
+% use 'corr2' function in matlab, it will take very less time for comparing images.
+
+% https://stackoverflow.com/questions/29442214/comparing-multiple-images-in-matlab
+% Assuming the sizes of all those images to be the same, here's one efficient approach -
+
+%// Get dimensions of each image
+%[nrows,ncols] = size(imageArray{1}) 
+
+%// Convert the cell array to a 3D numeric array for vectorized operations
+%im = reshape(cell2mat(imageArray),nrows,ncols,[])
+
+%// Use MATLAB builtins min and max along the third dimension for final output
+%minImg = min(im,[],3)
+%maxImg = max(im,[],3)
+
 %%
 imshow(newImage)
+% Warning: Image is too big to fit on screen; displaying at 50% 
  
 
