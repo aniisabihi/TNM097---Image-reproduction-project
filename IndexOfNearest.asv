@@ -1,0 +1,6 @@
+function [index] = IndexOfNearest(pixel,dataBase)
+
+    [mean_value(1:1:150,1:1:150)] = compute_euclidian(pixel,data{i});
+
+    [val,index] = min(mean_value);
+end

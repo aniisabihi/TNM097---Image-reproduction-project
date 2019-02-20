@@ -1,4 +1,6 @@
-function [max_value,mean_value] = compute_euclidian(ref,signal)
+function [mean_value] = compute_euclidian(ref,signal)
+
+    ref = imresize(ref, [25 25], 'bicubic');
 
     L1 = ref(:,:,1);
     L2 = signal(:,:,1);

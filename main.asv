@@ -24,32 +24,31 @@ load ImageData.mat
 %%
 RepImage = imread('ImageDatabase/1.jpg');
 RepImage = im2double(RepImage);
-RepImage = imresize(RepImage, [100 100], 'bicubic');
+RepImage = imresize(RepImage, [150 150], 'bicubic');
 RepImageLab = rgb2lab(RepImage);
 
-newImage = zeros(2500,2500,3); % 150x25 = 3750
+newImage = zeros(3750,3750,3); % 150x25 = 3750
 
 for a = 1:250
     data{a} = rgb2lab(h{a});
 end
 
 
-indexOfmin = zeros(100,100);
+indexOfmin = zeros(150,150);
 %% Detta funkar inte ï¿½n
 % Vill jï¿½mfï¿½ra en pixel i originalbilden med varje bild i datasettet. 
 % Berï¿½kna det euklidiska avstï¿½ndet och ta det som har minst medelvï¿½rde 
 
 
-%% Skickar in en pixel tilsammans med hela datasettet
-% Tar också tid, hur gör man utan loopar?
+%%
 
-for m = 1:100
-    for n = 1:100
+for m = 1:150
+    for n = 1:150
         [indexOfmin(m,n)] = IndexOfNearest(RepImageLab(m,n,:),data);
     end
 end
 
- %% Ta reda på hur man gör utan loopar!!
+ %%
 
 for j = 1:25:3750
      for k = 1:25:3750
@@ -61,7 +60,7 @@ for j = 1:25:3750
      end
 end
 
-%%
+
 imshow(newImage)
  
 
