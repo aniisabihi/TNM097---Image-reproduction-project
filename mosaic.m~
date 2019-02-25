@@ -67,10 +67,9 @@ for y = 1:tileSize:imgHeight
 					
 		% Find the minium distance, minDist = value, match = index of that value
 		[minDist match] = min(dist);  
-
 	
 		% Put the tile from the tile-set into our result image
-		ret(vectY, vectX, :) = tileData(:,:,:,match);
+		ret(vectY, vectX, :) = tileData(matcg:,:,:,match);
 	end
 	
 	% Update each row as we go
