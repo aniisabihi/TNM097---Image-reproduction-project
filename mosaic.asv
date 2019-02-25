@@ -49,7 +49,7 @@ for y = 1:tileSize:imgHeight
 				%Compute the euclidean distance
 				dist = dist + sqrt(  (ImAve(k, :, 1) - blockAve(1)).^2 + ...
 									 (ImAve(k, :, 2) - blockAve(2)).^2 + ...
-									 (ImAve(k, :, 3) - blockAve(3)).^2  );
+									 (tileAve(k, :, 3) - blockAve(3)).^2  );
 								
 				% Increment the sub-sub-block index
 				k = k + 1;

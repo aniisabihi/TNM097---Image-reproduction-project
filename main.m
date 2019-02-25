@@ -8,10 +8,10 @@ end
 save ImageData h
 
 %% Mosaic
-im = imread('1.jpg');
-inImg = imresize(im, [2000 2000]);
+im = imread('ImageDatabase/1.jpg');
+inImg = imresize(im, [1500 1500]);
 
-nBlocks = 10; 
+nBlocks = 3; 
 tileAve = getAverages(h,nBlocks);
 mosaicImg = mosaic(inImg, h, tileAve);
 %imshow(mosaicImg); 
