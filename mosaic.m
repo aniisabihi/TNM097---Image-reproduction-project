@@ -10,9 +10,12 @@ nBlocks = round(sqrt(size(ImAve, 1)));
 [imgHeight, imgWidth, imgChan] = size(img);
 
 % Check that the image is cropped correctly
-if (floor(mod(imgHeight, tileSize)) ~= 0) error('Tiles do not divide equally into the size of the image, is the image cropped?'); end;
-if (floor(mod(imgWidth, tileSize)) ~= 0) error('Tiles do not divide equally into the size of the image, is the image cropped?'); end;
-if (imgChan ~= 3) error('This does not seem to be an RGB image.'); end;
+if (floor(mod(imgHeight, tileSize)) ~= 0)
+    error('Tiles do not divide equally into the size of the image, is the image cropped?'); end
+if (floor(mod(imgWidth, tileSize)) ~= 0) 
+    error('Tiles do not divide equally into the size of the image, is the image cropped?'); end
+if (imgChan ~= 3) 
+    error('This does not seem to be an RGB image.'); end
 
 % Initialize the image to be returned
 ret = img; %zeros(imgHeight, imgWidth, 3, 'uint8');
@@ -59,12 +62,11 @@ for y = 1:tileSize:imgHeight
 		% Find the minium distance, minDist = value, match = index of that value
 		[minDist match] = min(dist);  
 
-	
 		% Put the tile from the tile-set into our result image
 		ret(vectY, vectX, :) = tileData(:,:,:,match);
 	end
 	
 	% Update each row as we go
 	imshow(ret, 'InitialMagnification', 'fit')
-	%pause(0.001) % Gives imshow some time to draw	
+	pause(0.001) % Gives imshow some time to draw	
 end

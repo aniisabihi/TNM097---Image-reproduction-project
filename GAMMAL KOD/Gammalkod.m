@@ -1,22 +1,7 @@
-%% Detta tar tid!
-% G�r en mat fil av alla bilder (minibilderna blir storlek 25x25 pixlar
-% Detta beh�vs endast g�ras n�r vi vill �ndra storlek p� de sm� bilderna
-for k=1:250
-   image = imread(sprintf('ImageDatabase/%d.jpg',k));
-   h(k,:,:,:) = imresize(image, [25 25], 'bicubic');
-end
-save ImageData h
 
-%% Mosaic
-im = imread('1.jpg');
-inImg = imresize(im, [250 250]);
+%% GAMMAL KOD ------ GAMMAL KOD ------- GAMMAL KOD ------ GAMMAL KOD ------
 
-nBlocks = 3; 
-tileAve = getAverages(h,nBlocks);
-mosaicImg = mosaic(inImg, h, tileAve);
-/imshow(mosaicImg); 
-
-%% Databas alternativ 2 
+%% GAMMAL KOD -- Databas alternativ 2 
 dataBase = cell(250,1);
 
 for i=1:250
@@ -26,11 +11,7 @@ end
 
 save dataBase k
 
-%%
-load ImageData.mat
-load dataBase.mat
-
-%%
+%% GAMMAL KOD
 RepImage = imread('ImageDatabase/1.jpg');
 RepImage = im2double(RepImage);
 RepImage = imresize(RepImage, [100 100], 'bicubic');
@@ -51,14 +32,14 @@ indexOfmin = zeros(100,100);
 
 %% Skickar in en pixel tilsammans med hela datasettet
 % Tar ocks� tid, hur g�r man utan loopar?
-
+%% GAMMAL KOD
 for m = 1:100
     for n = 1:100
         [indexOfmin(m,n)] = IndexOfNearest(RepImageLab(m,n,:),data);
     end
 end
 
- %% Ta reda p� hur man g�r utan loopar!!
+ %% GAMMAL KOD -- Ta reda p� hur man g�r utan loopar!! -- 
 
 for j = 1:25:3750
      for k = 1:25:3750
@@ -88,9 +69,5 @@ end
 %// Use MATLAB builtins min and max along the third dimension for final output
 %minImg = min(im,[],3)
 %maxImg = max(im,[],3)
-
-%%
-imshow(newImage)
-% Warning: Image is too big to fit on screen; displaying at 50% 
  
 
