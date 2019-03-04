@@ -8,8 +8,12 @@ end
 save ImageData h
 
 %% Mosaic
+load ImageData
+
+%%
+
 im = imread('ImageDatabase/1.jpg');
-inImg = imresize(im, [1500 1500]);
+inImg = imresize(im, [1000 1000]);
 
 nBlocks = 3; 
 tileAve = getAverages(h,nBlocks);
