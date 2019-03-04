@@ -10,25 +10,23 @@ for k=1:250
 end
 save ImageData h lab 
 
+%% Halverar databasen till 100 bilder
+for k=1:250
+   h(:,:,:,k)
+end
+save hundra 
+
+%% Halverar databasen till 50 bilder
+for k=1:250
+   h(:,:,:,k)
+end
+save femtio 
+
 %% Mosaic
-
-load ImageData
-
-%%
-im = imread('ImageDatabase/1.jpg'); %bilden som ska reproduceras
+im = imread('ImageDatabase/169.jpg'); %bilden som ska reproduceras
 inImg = imresize(im, [1000 1000]); %1500x1500 pixlar
 inImgLab = rgb2lab(inImg);
 
 nBlocks = 3; % Anger antalet subblocks
 tileAve = getAverages(lab,nBlocks);
-
-%% Halverar databasen till 100 bilder
-[hundra, hunAve] = generateData(h, tileAve, 100);
-
-%% Halverar databasen till 50 bilder
-[femtio, femAve] = generateData(h, tileAve, 50); 
-
-%% Resultat
-mosaicImg = mosaic(inImg, inImgLab, femtio, femAve); %skapar mosaicbilden 
-
-
+mosaicImg = mosaic(inImg, inImgLab, h, tileAve); %skapar mosaicbilden 

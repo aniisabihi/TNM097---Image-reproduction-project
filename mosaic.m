@@ -1,4 +1,4 @@
-function [ ret ] = mosaic(img, tileData, ImAve)
+function [ ret ] = mosaic(img, labimg, tileData, ImAve)
 
 % Get the size of tiles in the tile-set
 tileSize = size(tileData, 1);
@@ -34,7 +34,7 @@ for y = 1:tileSize:imgHeight
 		vectX = x:x+tileSize-1;
 	
 		% Get a sub-image
-		subBlock = img(vectY, vectX, :);
+		subBlock = labimg(vectY, vectX, :);
 		
 		dist = zeros(1, size(ImAve,2));	% Initialize distance vector
 		k = 1; % Index for each sub-sub-block in tile
