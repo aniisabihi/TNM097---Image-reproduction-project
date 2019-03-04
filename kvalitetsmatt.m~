@@ -1,0 +1,22 @@
+%% Kvalitetsmått 
+% Signal to Ratio 
+inImgDouble = im2double(inImg);
+inImgDouble = im2double(inImg);
+inImgDouble = im2double(inImg);
+
+mosaicImgDouble = im2double(mosaicImg);
+mosaicImgDouble = im2double(mosaicImg);
+mosaicImgDouble = im2double(mosaicImg);
+
+noise = inImgDouble - mosaicImgDouble;
+noise = inImgDouble - mosaicImgDouble;
+noise = inImgDouble - mosaicImgDouble;
+
+snrValue_p = snr(inImgDouble,noise);
+snrValue_p = snr(inImgDouble,noise);
+snrValue_p = snr(inImgDouble,noise);
+
+
+%% Euclidian Distance 
+inImgLab = rgb2lab(inImgDouble);
+[max_value_3,mean_value_3] = compute_euclidian(inImgLab,mosaicImgDouble);
