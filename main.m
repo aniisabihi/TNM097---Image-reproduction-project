@@ -10,9 +10,19 @@ for k=1:250
 end
 save ImageData h lab 
 
+%% Load database
+load ImageData
+
 %% Mosaic
 im = imread('ImageDatabase/1.jpg'); % Bilden som ska reproduceras
-inImg = imresize(im, [1500 1500]); % 1500x1500 pixlar
+[height, width, color] = size(im);
+imgSize = 1500; 
+
+if height < imgSize || width < imgSize || height > imgSize || width > imgSize
+    f = warndlg('Your image does not have the desired height and width and will therefore be resized. This may affect the resemblance to the original image.','Warning');
+end
+
+inImg = imresize(im, [imgSize imgSize]); % 1500x1500 pixlar
 inImgLab = rgb2lab(inImg); % Konverterar från rgb till lab
 
 % Portrait 
