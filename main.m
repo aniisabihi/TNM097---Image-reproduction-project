@@ -13,21 +13,21 @@ save ImageData h lab
 %% Mosaic
 im = imread('ImageDatabase/1.jpg'); % Bilden som ska reproduceras
 inImg = imresize(im, [1500 1500]); % 1500x1500 pixlar
-inImgLab = rgb2lab(inImg);
+inImgLab = rgb2lab(inImg); % Konverterar från rgb till lab
 
 % Portrait 
-portratt = imread('TestImages/portratt.jpg'); % Bilden som ska reproduceras
-portratt = imresize(portratt, [1500 1500]); % 1500x1500 pixlar
+portratt = imread('TestImages/portratt.jpg');
+portratt = imresize(portratt, [1500 1500]); 
 portrattLab = rgb2lab(portratt);
 
 % Dark image
-mork = imread('TestImages/mork.jpg'); % Bilden som ska reproduceras
-mork = imresize(mork, [1500 1500]); % 1500x1500 pixlar
+mork = imread('TestImages/mork.jpg'); 
+mork = imresize(mork, [1500 1500]);
 morkLab = rgb2lab(mork);
 
 % Light image 
-ljus = imread('TestImages/ljus.jpg'); % Bilden som ska reproduceras
-ljus = imresize(ljus, [1500 1500]); % 1500x1500 pixlar
+ljus = imread('TestImages/ljus.jpg');
+ljus = imresize(ljus, [1500 1500]);
 ljusLab = rgb2lab(ljus);
 
 nBlocks = 3; % Anger antalet subblocks
@@ -39,8 +39,11 @@ tileAve = getAverages(lab,nBlocks);
 %% Halverar databasen till 50 bilder
 [femtio, femAve] = generateData(h, tileAve, 50); 
 
+%% Halverar databasen till 25 bilder
+[tjugofem, tjugofemAve] = generateData(h, tileAve, 25); 
+
 %% Resultat
-mosaicImg = mosaic(inImg, inImgLab, h, tileAve); %skapar mosaicbilden 
-mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); %skapar portrait mosaic
-mosaicMork = mosaic(mork, morkLab, h, tileAve); %skapar mork mosaic 
-mosaicLjus = mosaic(ljus, ljusLab, h, tileAve); %skapar ljus mosaic 
+mosaicImg = mosaic(inImg, inImgLab, h, tileAve); % Skapar mosaicbilden 
+mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
+mosaicMork = mosaic(mork, morkLab, h, tileAve); % Skapar mork mosaic 
+mosaicLjus = mosaic(ljus, ljusLab, h, tileAve); % Skapar ljus mosaic 
