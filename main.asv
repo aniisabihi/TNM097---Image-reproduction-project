@@ -57,7 +57,10 @@ tileAve = getAverages(lab,nBlocks);
 [tjugofem, tjugofemAve] = OptimizeData(lab, tileAve, morkLab); 
 
 %% Resultat
-[mosaicImg, new4]= mosaic(portratt, portrattLab, h, tileAve); % Skapar mosaicbilden 
+[mosaicImg, new1]= getOptimalImages(inImg, inImgLab, h, tileAve); % Skapar mosaicbilden 
+[mosaicImg, new1]= getOptimalImages(portratt, portrattLab, h, tileAve); % Skapar mosaicbilden 
+[mosaicImg, new3]= getOptimalImages(portratt, portrattLab, h, tileAve); % Skapar mosaicbilden 
+[mosaicImg, new4]= getOptimalImages(portratt, portrattLab, h, tileAve); % Skapar mosaicbilden 
 
 %%
 newHam = unique(new);
@@ -65,10 +68,19 @@ newMork = unique(new2);
 newLjus = unique(new3);
 newPortratt = unique(new4);
 
+%%
 C = intersect(newPortratt,newHam);
 B = intersect(newMork,newLjus);
 
+A = union(C,B);
 
+for i = 1:59
+    newDatabase60(:,:,:,i) = h(:,:,:,A(:,i));
+    newDatabase60Lab(:,:,:,i) = rgb2lab(newDatabase60(:,:,:,i));
+end
+
+tileAve = getAverages(newDatabase60Lab,nBlocks);
+mosaicIm = mosaic(inImg, inImgLab, newDatabase60, tileAve);
 
 
 % mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
