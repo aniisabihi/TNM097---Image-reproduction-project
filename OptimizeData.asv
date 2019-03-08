@@ -1,6 +1,15 @@
-function [tileData, tileAve] = generateData(tileData, tileAve, dataSize)
+function [tileData, tileAve] = OptimizeData(tileData, tileAve, original, dataSize)
 
     [~, numberOfTiles, ~] = size(tileAve);
+    
+    [height, width, channels] = size(original);
+    
+    for i = 1: height
+        for j = 1:width
+            maxValue = sqrt((original(i,j,1).^2 + original(i,j,2).^2 + original(i,j,3).^2));
+        end
+    end
+    
     
     for y = 1:numberOfTiles
     
@@ -36,4 +45,3 @@ function [tileData, tileAve] = generateData(tileData, tileAve, dataSize)
       
     end
 end
-

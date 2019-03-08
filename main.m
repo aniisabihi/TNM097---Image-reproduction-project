@@ -43,6 +43,7 @@ ljusLab = rgb2lab(ljus);
 nBlocks = 3; % Anger antalet subblocks
 tileAve = getAverages(lab,nBlocks);
 
+
 %% Halverar databasen till 100 bilder
 [hundra, hunAve] = generateData(h, tileAve, 100);
 
@@ -53,7 +54,9 @@ tileAve = getAverages(lab,nBlocks);
 [tjugofem, tjugofemAve] = generateData(h, tileAve, 25); 
 
 %% Resultat
-mosaicImg = mosaic(inImg, inImgLab, h, tileAve); % Skapar mosaicbilden 
-mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
-mosaicMork = mosaic(mork, morkLab, h, tileAve); % Skapar mork mosaic 
-mosaicLjus = mosaic(ljus, ljusLab, h, tileAve); % Skapar ljus mosaic 
+mosaicImg = mosaic(ljus, ljusLab, femtio, femAve); % Skapar mosaicbilden 
+% mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
+% mosaicMork = mosaic(mork, morkLab, h, tileAve); % Skapar mork mosaic 
+% mosaicLjus = mosaic(ljus, ljusLab, h, tileAve); % Skapar ljus mosaic 
+
+
