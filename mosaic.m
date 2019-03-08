@@ -1,8 +1,9 @@
-function [ ret ] = mosaic(img, labimg, tileData, ImAve)
+function [ ret] = mosaic(img, labimg, tileData, ImAve)
 
 % Get the size of tiles in the tile-set
 tileSize = size(tileData, 1);
 
+m =1;
 % Figure out how many nBlocks there were
 nBlocks = round(sqrt(size(ImAve, 1)));
 
@@ -29,6 +30,7 @@ figure
 % Iterate through each sub-image in the image
 for y = 1:tileSize:imgHeight
 	for x = 1:tileSize:imgWidth
+        
 		% Pick out which sub-image we want to work on
 		vectY = y:y+tileSize-1;
 		vectX = x:x+tileSize-1;
@@ -61,9 +63,12 @@ for y = 1:tileSize:imgHeight
 					
 		% Find the minium distance, minDist = value, match = index of that value
 		[minDist match] = min(dist);  
-
+        
+        
 		% Put the tile from the tile-set into our result image
 		ret(vectY, vectX, :) = tileData(:,:,:,match);
+%         newDatabase(m) = match;
+%         m = m+1;
 	end
 	
 	% Update each row as we go

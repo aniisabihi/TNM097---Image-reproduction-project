@@ -1,47 +1,54 @@
-function [tileData, tileAve] = OptimizeData(tileData, tileAve, original, dataSize)
+function [tileData, tileAve] = OptimizeData(tileData, tileAve, original)
 
-    [~, numberOfTiles, ~] = size(tileAve);
+    [~, ~, ~,numberOfTiles] = size(tileData);
     
     [height, width, channels] = size(original);
     
+    maxValue = sqrt((original(1,1,1).^2 + original(1,1,2).^2 + original(1,1,3).^2));
+    minValue = sqrt((original(1,1,1).^2 + original(1,1,2).^2 + original(1,1,3).^2));
+    
     for i = 1: height
         for j = 1:width
-            maxValue = sqrt((original(i,j,1).^2 + original(i,j,2).^2 + original(i,j,3).^2));
+            tempMax = sqrt((original(i,j,1).^2 + original(i,j,2).^2 + original(i,j,3).^2));
+            tempMin = sqrt((original(i,j,1).^2 + original(i,j,2).^2 + original(i,j,3).^2));
+           
+            if tempMax > maxValue
+                maxValue = tempMax;
+                indexMaxwidth = j;
+                indexMaxHeight = i;
+            end
+            if tempMin < minValue
+                minValue = tempMin;
+                indexMinwidth = j;
+                indexMinHeight = i;
+            end
         end
     end
     
-    
-    for y = 1:numberOfTiles
-    
-            
-            [~, numberOfTiles, ~] = size(tileAve);
-            dist = zeros(1,numberOfTiles);	% Initialize distance vector
-            
-            while numberOfTiles > dataSize
-               
-                for k = 1:numberOfTiles
-                    % Compute the euclidean distance
-                    dist = dist + sqrt(  (tileAve(:, y, 1) - tileAve(:, k, 1)).^2 + ...
-                                         (tileAve(:, y, 2) - tileAve(:, k, 2)).^2 + ...
-                                         (tileAve(:, y, 3) - tileAve(:, k, 3)).^2  );
-                 
-                end  
-                % Remove the first value 
-                [minDist, match] = min(dist); 
-                if minDist == 0
-                    dist(match) = [];  
-                end
 
-                % Find the minium distance, minDist = value, match = index of that value
-                [~, match] = min(dist); 
+    dist = zeros(1,numberOfTiles);	% Initialize distance vector
 
-                tileData(:,:,:,match) = [];
-                tileAve(:,match,:) = [];
 
-                [~, numberOfTiles, ~] = size(tileAve);
-            
-                
-            end
-      
+    for k = 1:numberOfTiles
+        % Compute the euclidean distance
+        dist(k) = mean2(sqrt((tileData(:,:,1,k).^2 + tileData(:,:,2,k).^2 + tileData(:,:,3,k).^2)));
+
+    end  
+   
+
+    % Find the minium distance, minDist = value, match = index of that value
+    for i = 1:numberOfTiles 
+        if dist(i)>maxValue
+            tileData(:,:,:,i) = [];
+            tileAve(:,i,:) = [];
+            numberOfTiles = numberOfTiles - 1;
+        end
+        if dist(i)<minValue
+            tileData(:,:,:,i) = [];
+            tileAve(:,i,:) = [];
+            numberOfTiles = numberOfTiles - 1;
+        end
     end
+
+               
 end

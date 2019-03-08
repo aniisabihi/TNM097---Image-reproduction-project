@@ -68,15 +68,7 @@ newPortratt = unique(new4);
 C = intersect(newPortratt,newHam);
 B = intersect(newMork,newLjus);
 
-A = union(C,B);
 
-for i = 1:59
-    newDatabase60(:,:,:,i) = h(:,:,:,A(:,i));
-    newDatabase60Lab(:,:,:,i) = rgb2lab(newDatabase60(:,:,:,i));
-end
-
-tileAve = getAverages(newDatabase60Lab,nBlocks);
-mosaicIm = mosaic(inImg, inImgLab, newDatabase60, tileAve);
 
 
 % mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
