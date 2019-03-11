@@ -73,5 +73,5 @@ for y = 1:tileSize:imgHeight
 	
 	% Update each row as we go
 	imshow(ret, 'InitialMagnification', 'fit')
-	pause(0.001) % Gives imshow some time to draw	
+	pause(0.002) % Gives imshow some time to draw	
 end
