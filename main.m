@@ -41,15 +41,15 @@ ljus = imread('ImageDatabase/224.jpg');
 ljus = imresize(ljus, [imgSize imgSize]);
 ljusLab = rgb2lab(ljus);
 
-nBlocks = 3; % Anger antalet subblocks
+nBlocks = 1; % Anger antalet subblocks
 tileAve = getAverages(lab,nBlocks);
 
 %% Vanligt resultat
 mosaicBild = mosaic(inImg, inImgLab, h, tileAve); % Skapar mosaic
 
 %% Resultat för kvalitetsmått
-mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
-mosaicMork = mosaic(mork, morkLab, h, tileAve); % Skapar mork mosaic 
+%mosaicPortratt = mosaic(portratt, portrattLab, h, tileAve); % Skapar portrait mosaic
+%mosaicMork = mosaic(mork, morkLab, h, tileAve); % Skapar mork mosaic 
 mosaicLjus = mosaic(ljus, ljusLab, h, tileAve); % Skapar ljus mosaic 
 
 %% Halverar databasen till 100 bilder
